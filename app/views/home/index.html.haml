@@ -1,0 +1,19 @@
+#show
+  %embed{width: 700, height: 400, src: 'http://a3.vikiassets.com/assets/vikiplayer.swf'}
+#movies.carousel.slide
+  .carousel-inner
+    - @movies.each_slice(5) do |list|
+      - active_class = list.first == @movies.first ? 'active' : ''
+      .item{class: active_class}
+        %ul.thumbnails
+          - list.each do |movie|
+            %li
+              .caption
+                %h3= movie['title'].truncate(20)
+              .thumbnail  
+                = link_to image_tag(movie['image'], size: '200x200'), '#', id: movie['id']
+  %a.carousel-control.left{:href => '#movies', 'data-slide' => "prev"} &lsaquo;   
+  %a.carousel-control.right{:href => '#movies', 'data-slide'=> "next"} &rsaquo;   
+      
+:javascript    
+  var movies = #{@movies.to_json}

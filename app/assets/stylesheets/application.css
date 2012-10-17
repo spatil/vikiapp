@@ -10,4 +10,10 @@
  *
  *= require_self
  *= require_tree .
+ *= require bootstrap_and_overrides 
  */
+@linkColor: #ff0000;
+
+#show {
+  text-align: center;
+}
