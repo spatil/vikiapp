@@ -1,19 +1,45 @@
-#show
-  %embed{width: 700, height: 400, src: 'http://a3.vikiassets.com/assets/vikiplayer.swf'}
-#movies.carousel.slide
-  .carousel-inner
-    - @movies.each_slice(5) do |list|
-      - active_class = list.first == @movies.first ? 'active' : ''
-      .item{class: active_class}
-        %ul.thumbnails
-          - list.each do |movie|
-            %li
-              .caption
-                %h3= movie['title'].truncate(20)
-              .thumbnail  
-                = link_to image_tag(movie['image'], size: '200x200'), '#', id: movie['id']
-  %a.carousel-control.left{:href => '#movies', 'data-slide' => "prev"} &lsaquo;   
-  %a.carousel-control.right{:href => '#movies', 'data-slide'=> "next"} &rsaquo;   
-      
+- movie = @movies[0]['resource']
+.row-fluid
+  #show
+    .span8
+      %embed{:height => "400", :src => format_url(movie['formats']['flash_embed'], {:auto_play => false}), :type => "application/x-shockwave-flash", :width => "700"}
+    .span4
+      .well.sidebar-nav
+        %ul.nav.nav-list
+          %li.nav-header= movie['title']
+          %li  
+            %span
+              Genres:  
+            = genres(movie['genres'])
+          %li.movie-desc  
+            %span
+              Description:
+            = movie['description'].truncate(100)
+.row-fluid
+  .span12.list-name
+    %h2 Featured Videos
+  .span12
+    .spinner.hide= image_tag 'spinner.gif', size: '75x75', :style => 'height:75px !important;'
+    #movies.carousel.slide
+      = render 'movies'
+
+%script{type: "text/x-jquery-tmpl", id: "movie_template"}
+  .span8
+    %embed{:height => "400", :src => '${formats.flash_embed}', :type => "application/x-shockwave-flash", :width => "700"}
+  .span4
+    .well.sidebar-nav
+      %ul.nav.nav-list
+        %li.nav-header ${title}
+        %li  
+          %span
+            Genres: 
+          {{each genres}}
+          ${$value.name} 
+          {{/each}}
+        %li.movie-desc  
+          %span
+            Description:
+          ${description}
+
 :javascript    
   var movies = #{@movies.to_json}

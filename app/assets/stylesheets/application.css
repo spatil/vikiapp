@@ -12,8 +12,54 @@
  *= require_tree .
  *= require bootstrap_and_overrides 
  */
-@linkColor: #ff0000;
 
 #show {
   text-align: center;
+}
+
+img {
+  height : 150px !important;
+}
+
+.span4 ul {
+  list-style: none;
+}
+.carousel-inner .item .thumbnails li {
+    margin-left: 80px !important; 
+}
+
+.row-fluid .span4 {
+  background-color: lightgray;
+  height: 400px;
+}
+
+.nav-header {
+  line-height: 24px;
+  margin-bottom: 30px;
+  font-size: 1em !important;
+}
+
+.nav li {
+  line-height: 40px;
+  text-align: left;
+}
+
+.spinner {
+    text-align: center;
+}
+
+.movie-desc {
+    line-height: 20px !important;
+}
+
+.nav li span {
+    font-weight: bold;
+    font-size: 1em;
+}
+.well {
+  height: 100%;
+}
+
+.list-name h2 {
+  margin-left: 78px;
 }

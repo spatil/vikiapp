@@ -1,0 +1,13 @@
+.carousel-inner
+  - @movies.each_slice(4) do |list|
+    - active_class = list.first == @movies.first ? 'active' : ''
+    .item{class: active_class}
+      %ul.thumbnails
+        - list.each do |movie|
+          %li
+            .caption
+              %h3= movie['title'].truncate(20)
+            .thumbnail  
+              = link_to image_tag(movie['image'], size: '200x145'), 'javascript:void(0);', id: movie['id'], 'data-original-title' => 'Comming Soon'
+%a.carousel-control.left{:href => '#movies', 'data-slide' => "prev"} &lsaquo;   
+%a.carousel-control.right{:href => '#movies', 'data-slide'=> "next"} &rsaquo;   

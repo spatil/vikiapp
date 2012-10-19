@@ -3,15 +3,18 @@
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 
 $(document).ready -> 
-  $('movies').carousel({
-    interval: 2000
-  })
+  $('#movies').carousel({ interval: 5000 })
 
-  $('.thumbnail a').on 'click', (event) ->
+  $('#movies').on 'click', '.thumbnail a',(event) ->
     movie =  filter_movie(this.id)
-    $('#show embed').attr('src', movie['formats']['flash_embed'])
 
-
+    if(movie.resource)
+      movie = movie.resource
+    
+    if movie.formats   
+      $("#show").html($("#movie_template").tmpl(movie))
+    else
+      alert 'Comming Soon' 
 
 filter_movie = (id) ->
   movies.filter((x) -> 

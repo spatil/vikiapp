@@ -1,0 +1,17 @@
+$('#movies').html('#{escape_javascript(render :partial => 'movies')}');
+
+if(#{params[:type] == "all"}){
+$('.list-name h2').html('All Movies');}
+else if(#{params[:type] == 'genre'}){
+$('.list-name h2').html("#{@name} Movies");}
+else{ 
+$('.list-name h2').html('Featured Videos');}
+
+$('.spinner').hide();
+$('#movies').show();
+// reset the carousel and init again 
+$('#movies').data('carousel', null);
+$('#movies').carousel({interval: 5000});
+
+:plain
+  var movies = #{@movies.to_json}

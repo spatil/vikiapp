@@ -21,10 +21,26 @@
     .navbar.navbar-fluid-top
       .navbar-inner
         .container-fluid
-          %a.btn.btn-navbar(data-target=".nav-collapse" data-toggle="collapse")
-            %span.icon-bar
-            %span.icon-bar
-            %span.icon-bar
+          .nav-collapse.collapse
+            %ul.nav.pull-right
+              %li
+                .btn-group
+                  %a.btn.btn-primary{:href => "#"}
+                    %i.icon-film.icon-white
+                    Movies 
+                  %a.btn.btn-primary.dropdown-toggle{"data-toggle" => "dropdown", :href => '#', :id => 'movies_drop'}
+                    %span.caret
+                  %ul.dropdown-menu
+                    - @genres.each do |genre|
+                      %li
+                        %a{:href => movie_path(:genre, id: genre['id']), 'data-remote' => 'true'}
+                          %i
+                            = genre['name'] 
+
+              %li
+                = link_to 'Featured', root_path, remote: true, id: 'featured'
+              %li
+                = link_to 'See all', movie_path('all'), remote: true, id: 'all'
           %a.brand(href="#") Viki
           = bootstrap_flash
 
@@ -32,7 +48,7 @@
       .row-fluid
         .span12
           = yield
-    
+
       %footer
         %p &copy; Company 2012
     /

@@ -12,5 +12,17 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require jquery.tmpl
 //= require twitter/bootstrap 
 //= require_tree .
+//
+
+$(document).ready(function() {
+  $('.nav a').on('click', function(event) {
+    if($(this).attr('id') != 'movies_drop')
+    {
+      $('#movies').hide();
+      $('.spinner').show();
+    }
+  });
+});

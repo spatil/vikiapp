@@ -1,6 +1,7 @@
 Viki::Application.routes.draw do
   root :to => "home#index"
 
+  match 'movies/:type'  => 'home#index', :as => :movie
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
