@@ -14,8 +14,8 @@ class HomeController < ApplicationController
       @movies = @client.featured.get.content 
       @genres = @client.genres(:movies).get.content
     end
-  rescue
-    @movies    = []
+  rescue Exception => e
+    @movies    = [] 
     @genres    = []
   end
 

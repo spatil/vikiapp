@@ -63,3 +63,7 @@ img {
 .list-name h2 {
   margin-left: 78px;
 }
+
+.btn-group {
+    margin-top: 10px !important;
+}
