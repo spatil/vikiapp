@@ -2,7 +2,10 @@
 .row-fluid
   #show
     .span8
-      %embed{:height => "400", :src => format_url(movie['formats']['flash_embed'], {:auto_play => false}), :type => "application/x-shockwave-flash", :width => "700"}
+      - if movie['formats']
+        %embed{:height => "400", :src => format_url(movie['formats']['flash_embed'], {:auto_play => false}), :type => "application/x-shockwave-flash", :width => "700"}
+      - else    
+        %embed{:height => "400", :src => 'http://a3.vikiassets.com/1345959692/assets/vikiplayer.swf', :type => "application/x-shockwave-flash", :width => "700"}
     .span4
       .well.sidebar-nav
         %ul.nav.nav-list
